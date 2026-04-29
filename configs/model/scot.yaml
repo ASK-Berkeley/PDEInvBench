@@ -1,0 +1,41 @@
+# Shared ScOT model configuration
+# Interpolates ALL parameters from system_params
+name: "${system_params.name}_scot"
+dropout: ${system_params.scot_dropout}
+hidden_channels: ${system_params.scot_hidden_channels}
+encoder_layers: ${system_params.scot_encoder_layers}
+downsampler_layers: ${system_params.scot_downsampler_layers}
+mlp_layers: ${system_params.scot_mlp_layers}
+use_partials: True
+model_config:
+  _target_: pdeinvbench.models.inverse_model.InverseModel
+  paramnet: 
+    _target_: pdeinvbench.models.inverse_model.ParameterNet
+    pde: ${data.pde}
+    normalize: ${system_params.normalize}
+    logspace: ${system_params.logspace}
+    params_to_predict: ${system_params.params_to_predict}
+    mlp_type: ${system_params.mlp_type}
+    encoder:
+      _target_: pdeinvbench.models.encoder.ScOTEncoder
+      embed_dim: ${system_params.scot_embed_dim}
+      n_layers: ${model.encoder_layers}
+      hidden_size: ${system_params.scot_hidden_size}
+      patch_size: ${system_params.scot_patch_size}
+      num_heads: ${system_params.scot_num_heads}
+      skip_connections: ${system_params.scot_skip_connections}
+      depths: ${system_params.scot_depths}
+      n_past: ${n_past}
+      n_future: ${n_future}
+      use_partials: ${model.use_partials}
+      data_channels: ${data.num_channels}
+      pde: ${data.pde}
+      batch_size: ${data.batch_size}
+    downsampler: ${system_params.scot_downsampler}
+    mlp_hidden_size: ${system_params.scot_mlp_hidden_size}
+    mlp_layers: ${model.mlp_layers}
+    mlp_activation: "relu"
+    mlp_dropout: ${model.dropout}
+    condition_on_time: ${system_params.scot_condition_on_time}
+    downsample_factor: ${data.downsample_factor}
+

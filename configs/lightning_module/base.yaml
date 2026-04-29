@@ -1,0 +1,10 @@
+_target_: pdeinvbench.lightning_modules.InverseModule
+pde: ${data.pde}
+n_past: ${n_past}
+batch_size: ${data.batch_size}
+use_partials: ${model.use_partials}
+params_to_predict: ${model.model_config.paramnet.params_to_predict}
+param_loss_metric: ${loss.param_loss_metric}
+inverse_residual_loss_weight: ${loss.inverse_residual_loss_weight}
+inverse_param_loss_weight: ${loss.inverse_param_loss_weight}
+residual_filter: False

@@ -1,0 +1,2 @@
+_target_: torch.optim.SGD
+lr: ${tailoring_optimizer_lr}

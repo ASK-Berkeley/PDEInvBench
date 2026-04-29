@@ -1,0 +1,8 @@
+name: 1dkdv
+defaults:
+  - _self_
+  - ttt_base
+  - override system_params: 1dkdv
+
+inverse_model_wandb_run: ml-pdes/1dkdv_test_time_tuning/model-4j475b9v:v199
+# inverse_model_wandb_run: ml-pdes/time_logging_test/model-tw4k8e8h:best

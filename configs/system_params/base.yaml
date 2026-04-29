@@ -1,0 +1,111 @@
+# Base system parameters
+# Defines common structure and defaults for BOTH data AND model
+# Each system inherits this and overrides specific values
+
+# ============ Data Parameters ============
+name: "placeholder_inverse"
+data_root: "placeholder_path"
+train_data_root: ${system_params.data_root}/train
+val_data_root: ${system_params.data_root}/validation
+ood_data_root: ${system_params.data_root}/out_of_distribution
+ood_data_root_extreme: ${system_params.data_root}/out_of_distribution_extreme
+test_data_root: ${system_params.data_root}/test
+pde_name: "placeholder_pde"
+num_channels: 1
+cutoff_first_n_frames: 0
+
+# ============ Model - System-Specific Parameters ============
+params_to_predict: []
+normalize: False
+logspace: False
+mlp_type: "mlp"  # Default to standard MLP (2ddf overrides to "conv")
+downsampler_input_dim: 2  # 1 for 1D systems, 2 for 2D systems
+
+# ============ FNO Architecture ============
+fno_hidden_channels: 64
+fno_encoder_layers: 4
+fno_downsampler_layers: 4
+fno_dropout: 0
+fno_mlp_layers: 1
+fno_n_modes: 16
+
+fno_hidden_channels_50k: 16
+fno_encoder_layers_50k: 6
+
+fno_hidden_channels_50mil: 200
+fno_encoder_layers_50mil: 4
+
+fno_downsampler:
+  _target_: pdeinvbench.models.downsampler.ConvDownsampler
+  input_dimension: ${system_params.downsampler_input_dim}
+  n_layers: ${model.downsampler_layers}
+  in_channels: ${model.hidden_channels}
+  out_channels: ${model.hidden_channels}
+  kernel_size: 3
+  stride: 1
+  padding: 2
+  dropout: ${model.dropout}
+
+# ============ ResNet Architecture ============
+resnet_hidden_channels: 128
+resnet_encoder_layers: 13
+resnet_downsampler_layers: 4
+resnet_dropout: 0
+resnet_mlp_layers: 1
+
+resnet_downsampler:
+  _target_: pdeinvbench.models.downsampler.ConvDownsampler
+  input_dimension: ${system_params.downsampler_input_dim}
+  n_layers: ${model.downsampler_layers}
+  in_channels: ${model.hidden_channels}
+  out_channels: ${model.hidden_channels}
+  kernel_size: 3
+  stride: 1
+  padding: 2
+  dropout: ${model.dropout}
+
+# ============ ScOT Architecture ============
+scot_hidden_channels: 32
+scot_encoder_layers: 4
+scot_downsampler_layers: 4
+scot_dropout: 0
+scot_mlp_layers: 1
+scot_mlp_hidden_size: 32
+scot_condition_on_time: False
+scot_embed_dim: 36
+scot_hidden_size: 32
+scot_patch_size: 4
+scot_num_heads: [3, 6, 12, 24]
+scot_skip_connections: [2, 2, 2, 2]
+scot_depths: [1, 1, 1, 1]
+
+scot_downsampler:
+  _target_: pdeinvbench.models.downsampler.ConvDownsampler
+  input_dimension: ${system_params.downsampler_input_dim}
+  n_layers: ${model.downsampler_layers}
+  in_channels: ${model.hidden_channels}
+  out_channels: ${model.hidden_channels}
+  kernel_size: 3
+  stride: 1
+  padding: 2
+  dropout: ${model.dropout}
+
+
+# ============ DeepONet Architecture ============
+deeponet_hidden_channels: 128
+deeponet_branchnet_encoder_layers: 13
+deeponet_trunknet_encoder_layers: 5
+deeponet_downsampler_layers: 4
+deeponet_dropout: 0
+deeponet_mlp_layers: 1
+
+deeponet_downsampler:
+  _target_: pdeinvbench.models.downsampler.ConvDownsampler
+  input_dimension: ${system_params.downsampler_input_dim}
+  n_layers: ${system_params.deeponet_downsampler_layers}
+  in_channels: ${system_params.deeponet_hidden_channels}
+  out_channels: ${system_params.deeponet_hidden_channels}
+  kernel_size: 3
+  stride: 1
+  padding: 2
+  dropout: ${model.dropout}

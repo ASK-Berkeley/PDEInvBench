@@ -1,0 +1,10 @@
+name: 2dns
+defaults:
+  - _self_
+  - ttt_base
+  - override system_params: 2dns
+
+
+test_run: true
+inverse_model_wandb_run: ml-pdes/tailoring_redone/model-wuhbdlqr:v200
+# inverse_model_wandb_run: ml-pdes/time_logging_test/model-8mwjk5v0:best

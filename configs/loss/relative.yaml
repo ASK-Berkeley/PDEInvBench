@@ -1,0 +1,5 @@
+param_loss_metric:
+  _target_: pdeinvbench.utils.types.ParamMetrics
+  value: "Relative Error"
+inverse_residual_loss_weight: 0
+inverse_param_loss_weight: 1

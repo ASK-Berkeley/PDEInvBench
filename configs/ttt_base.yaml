@@ -1,0 +1,14 @@
+name: ttt_base
+defaults:
+  - _self_
+  - base
+  - tailoring_optimizer: adam
+  - override lightning_module: ttt
+
+test_run: true
+
+tailor_anchor_loss_weight: 1
+tailor_residual_loss_weight: 1
+tailor_per_batch: True
+num_tailoring_steps: 50
+tailoring_optimizer_lr: 0.00001

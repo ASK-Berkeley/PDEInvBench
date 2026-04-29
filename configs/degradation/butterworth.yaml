@@ -1,0 +1,4 @@
+_target_: pdeinvbench.data.degradations.drop_high_freq_modes
+_partial_: true
+drop_ratio: 0.3
+order: 6

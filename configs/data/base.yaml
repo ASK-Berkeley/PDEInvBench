@@ -1,0 +1,120 @@
+# These will be overridden by child configs
+name: "placeholder_inverse"
+data_root: "placeholder_path"
+train_data_root: ${system_params.train_data_root}
+val_data_root: ${system_params.val_data_root}
+ood_data_root: ${system_params.ood_data_root}
+ood_data_root_extreme: ${system_params.ood_data_root_extreme}
+test_data_root: ${system_params.test_data_root}
+num_channels: ${system_params.num_channels}
+batch_size: 8
+dilation: 1
+cutoff_first_n_frames: ${system_params.cutoff_first_n_frames}
+frac_param_combinations: 1
+frac_ics_per_param: 1
+random_sample_param: True
+downsample_factor: 0
+every_nth_window: 10
+train_window_start_percent: 0
+train_window_end_percent: 1
+test_window_start_percent: 0
+test_window_end_percent: 1
+grid_transform: ${grid_transform}
+pde:
+  _target_: pdeinvbench.utils.types.PDE
+  value: ${system_params.pde_name}
+
+train_dataloader:
+  _target_: torch.utils.data.DataLoader
+  dataset:
+    _target_: pdeinvbench.data.PDE_MultiParam
+    data_root: ${data.train_data_root}
+    pde: ${data.pde}
+    n_past: ${n_past}
+    train: True
+    dilation: ${data.dilation}
+    cutoff_first_n_frames: ${data.cutoff_first_n_frames}
+    frac_param_combinations: ${data.frac_param_combinations}
+    frac_ics_per_param: ${data.frac_ics_per_param}
+    random_sample_param: ${data.random_sample_param}
+    downsample_factor: ${data.downsample_factor}
+    every_nth_window: ${data.every_nth_window}
+    window_start_percent: ${data.train_window_start_percent}
+    window_end_percent: ${data.train_window_end_percent}
+    degradation_operator: ${train_degradation}
+    grid_transform: ${data.grid_transform}
+  batch_size: ${data.batch_size}
+  shuffle: True
+
+val_dataloader:
+  _target_: torch.utils.data.DataLoader
+  dataset:
+    _target_: pdeinvbench.data.PDE_MultiParam
+    data_root: ${data.val_data_root}
+    pde: ${data.pde}
+    n_past: ${n_past}
+    train: False
+    dilation: ${data.dilation}
+    cutoff_first_n_frames: ${data.cutoff_first_n_frames}
+    frac_param_combinations: ${data.frac_param_combinations}
+    frac_ics_per_param: ${data.frac_ics_per_param}
+    random_sample_param: ${data.random_sample_param}
+    downsample_factor: ${data.downsample_factor}
+    every_nth_window: ${data.every_nth_window}
+    window_start_percent: ${data.train_window_start_percent}
+    window_end_percent: ${data.train_window_end_percent}
+    degradation_operator: ${test_degradation}
+    grid_transform: ${data.grid_transform}
+  batch_size: ${data.batch_size}
+  shuffle: False
+
+ood_dataloader:
+  _target_: torch.utils.data.DataLoader
+  dataset:
+    _target_: pdeinvbench.data.PDE_MultiParam
+    data_root: ${data.ood_data_root}
+    pde: ${data.pde}
+    n_past: ${n_past}
+    train: False
+    dilation: ${data.dilation}
+    cutoff_first_n_frames: ${data.cutoff_first_n_frames}
+    downsample_factor: ${data.downsample_factor}
+    every_nth_window: ${data.every_nth_window}
+    grid_transform: ${data.grid_transform}
+  batch_size: ${data.batch_size}
+  shuffle: False
+
+ood_dataloader_extreme:
+  _target_: torch.utils.data.DataLoader
+  dataset:
+    _target_: pdeinvbench.data.PDE_MultiParam
+    data_root: ${data.ood_data_root_extreme}
+    pde: ${data.pde}
+    n_past: ${n_past}
+    train: False
+    dilation: ${data.dilation}
+    cutoff_first_n_frames: ${data.cutoff_first_n_frames}
+    downsample_factor: ${data.downsample_factor}
+    every_nth_window: ${data.every_nth_window}
+    grid_transform: ${data.grid_transform}
+  batch_size: ${data.batch_size}
+  shuffle: False
+
+test_dataloader:
+  _target_: torch.utils.data.DataLoader
+  dataset:
+    _target_: pdeinvbench.data.PDE_MultiParam
+    data_root: ${data.test_data_root}
+    pde: ${data.pde}
+    n_past: ${n_past}
+    train: False
+    dilation: ${data.dilation}
+    cutoff_first_n_frames: ${data.cutoff_first_n_frames}
+    downsample_factor: ${data.downsample_factor}
+    every_nth_window: ${data.every_nth_window}
+    window_start_percent: ${data.test_window_start_percent}
+    window_end_percent: ${data.test_window_end_percent}
+    degradation_operator: ${test_degradation}
+    grid_transform: ${data.grid_transform}
+  batch_size: ${data.batch_size}
+  shuffle: False

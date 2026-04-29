@@ -1,0 +1,9 @@
+# Large FNO variant (50 million params)
+# Inherits structure from fno.yaml, only overrides size parameters
+defaults:
+  - fno
+
+name: "${system_params.name}_fno_50mil"
+hidden_channels: ${system_params.fno_hidden_channels_50mil}
+encoder_layers: ${system_params.fno_encoder_layers_50mil}
+

@@ -1,0 +1,8 @@
+defaults:
+  - base
+
+_target_: pdeinvbench.lightning_modules.InverseTestTimeTailoringModule
+num_tailoring_steps: ${num_tailoring_steps}
+tailor_per_batch: ${tailor_per_batch}
+tailor_anchor_loss_weight: ${tailor_anchor_loss_weight}
+tailor_residual_loss_weight: ${tailor_residual_loss_weight}

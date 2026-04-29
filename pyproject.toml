@@ -1,0 +1,12 @@
+[project]
+name = "PDEInvBench"
+version = "0.0.1"
+authors = [
+]
+description = "PDE Inverse Benchmarking"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = ["Programming Language :: Python :: 3"]
+
+[tool.setuptools]
+packages = ["pdeinvbench"]

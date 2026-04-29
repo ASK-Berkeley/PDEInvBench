@@ -1,0 +1,6 @@
+_target_: pdeinvbench.data.degradations.add_salt_and_pepper_noise
+_partial_: true
+pepper_prob: 0.1
+salt_prob: 0.1
+pepper_val: -0.5
+salt_val: 0.5

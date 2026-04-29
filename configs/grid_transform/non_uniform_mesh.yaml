@@ -1,0 +1,4 @@
+_target_: pdeinvbench.data.grid_transforms.non_uniform_mesh
+_partial_: true
+axis: "x"
+drop_ratio: 0.05

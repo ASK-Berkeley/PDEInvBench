@@ -1,0 +1,30 @@
+# ============================================
+# 2DDF SYSTEM PARAMETERS
+# ============================================
+defaults:
+  - base
+
+# ============ Data Parameters ============
+name: "2ddf_inverse"
+data_root: "/data/shared/meta-pde/darcy-flow/r241_folded/"
+pde_name: "Darcy Flow 2D"
+num_channels: 1
+cutoff_first_n_frames: 0
+
+# ============ Model Parameters ============
+params_to_predict: ["coeff"]
+normalize: False
+mlp_type: "conv"  # Special: 2ddf uses conv MLP
+
+# Override downsamplers: 2ddf uses IdentityMap instead of ConvDownsampler
+fno_downsampler:
+  _target_: pdeinvbench.models.downsampler.IdentityMap
+
+resnet_downsampler:
+  _target_: pdeinvbench.models.downsampler.IdentityMap
+
+scot_downsampler:
+  _target_: pdeinvbench.models.downsampler.IdentityMap
+
+deeponet_downsampler:
+  _target_: pdeinvbench.models.downsampler.IdentityMap

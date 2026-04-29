@@ -1,0 +1,9 @@
+# ============================================
+# 2DRD-DU SYSTEM PARAMETERS
+# ============================================
+defaults:
+  - 2drdk
+data_root: "/data/shared/meta-pde/folded_data/reaction-diffusion-2d/Du_fold_2"
+
+# ============ Model Parameters ============
+params_to_predict: ["Du"]

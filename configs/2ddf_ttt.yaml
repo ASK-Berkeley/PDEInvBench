@@ -1,0 +1,9 @@
+name: 2ddf 
+defaults:
+  - ttt_base    # Load base first
+  - _self_      # Then override with this file's values
+  - override callbacks: 2ddf
+  - override system_params: 2ddf
+
+inverse_model_wandb_run: ml-pdes/2ddf_compilation_folded/model-r5fj8hr1:best
+n_past: 1

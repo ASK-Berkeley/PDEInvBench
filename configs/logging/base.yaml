@@ -1,0 +1,4 @@
+_target_: pdeinvbench.utils.logging_utils.CustomWandbLogger
+entity: "ml-pdes"
+save_dir: "logs"
+project: ${data.name}

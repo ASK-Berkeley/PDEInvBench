@@ -1,0 +1,12 @@
+name: 2drd
+defaults:
+  - _self_
+  - ttt_base
+  - override system_params: 2drddu
+
+
+test_run: true
+inverse_model_wandb_run: ml-pdes/2drddu_compilation/model-lslyzo92:v184 # 100 % ics
+# inverse_model_wandb_run: ml-pdes/2drddu_compilation/model-jupsos6p:best # 20 % ics
+# inverse_model_wandb_run: ml-pdes/time_logging_test/model-71xuth62:best
+

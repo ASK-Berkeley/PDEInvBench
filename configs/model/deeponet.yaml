@@ -1,0 +1,46 @@
+# Shared ResNet model configuration
+# Interpolates ALL parameters from system_params
+name: "${system_params.name}_deeponet"
+dropout: ${system_params.deeponet_dropout}
+deeponet_hidden_channels: ${system_params.deeponet_hidden_channels}
+deeponet_branchnet_encoder_layers: ${system_params.deeponet_branchnet_encoder_layers}
+deeponet_trunknet_encoder_layers: ${system_params.deeponet_trunknet_encoder_layers}
+deeponet_downsampler_layers: ${system_params.deeponet_downsampler_layers}
+# Aliases for ${model.*} referenced from system_params (fno/resnet/scot downsampler blocks)
+hidden_channels: ${system_params.deeponet_hidden_channels}
+downsampler_layers: ${system_params.deeponet_downsampler_layers}
+mlp_layers: ${system_params.deeponet_mlp_layers}
+use_partials: True
+model_config:
+  _target_: pdeinvbench.models.inverse_model.InverseModel
+  paramnet: 
+    _target_: pdeinvbench.models.inverse_model.ParameterNet
+    pde: ${data.pde}
+    normalize: ${system_params.normalize}
+    logspace: ${system_params.logspace}
+    params_to_predict: ${system_params.params_to_predict}
+    mlp_type: ${system_params.mlp_type}
+    encoder:
+      _target_: pdeinvbench.models.encoder.DeepONetEncoder
+      branch_net:
+        _target_: pdeinvbench.models.encoder.ResnetEncoder
+        n_past: ${n_past}
+        n_future: ${n_future}
+        n_layers: ${model.deeponet_branchnet_encoder_layers}
+        data_channels: ${data.num_channels}
+        hidden_channels: ${model.deeponet_hidden_channels}
+        use_partials: ${model.use_partials}
+        pde: ${data.pde}
+        batch_size: ${data.batch_size}
+      trunk_net:
+        _target_: pdeinvbench.models.encoder.DeepONetTrunkNet
+        hidden_channels: ${model.deeponet_hidden_channels}
+        n_layers: ${model.deeponet_trunknet_encoder_layers}
+        pde: ${data.pde}
+    downsampler: ${system_params.deeponet_downsampler}
+    mlp_hidden_size: ${model.deeponet_hidden_channels}
+    mlp_layers: ${model.mlp_layers}
+    mlp_activation: "relu"
+    mlp_dropout: ${model.dropout}
+    downsample_factor: ${data.downsample_factor}
+

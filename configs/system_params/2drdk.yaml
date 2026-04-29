@@ -1,0 +1,18 @@
+# ============================================
+# 2DRD-K SYSTEM PARAMETERS
+# ============================================
+defaults:
+  - base
+
+# ============ Data Parameters ============
+name: "2drdk_inverse"
+data_root: "/data/shared/meta-pde/folded_data/reaction-diffusion-2d/k_fold_2"
+pde_name: "Reaction Diffusion 2D"
+num_channels: 2
+cutoff_first_n_frames: 2
+# Special override for corner extreme OOD
+ood_data_root_extreme: ${system_params.data_root}/out_of_distribution_corner_extreme
+
+# ============ Model Parameters ============
+params_to_predict: ["k"]
+normalize: False

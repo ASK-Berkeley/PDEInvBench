@@ -1,0 +1,10 @@
+- _target_: pdeinvbench.lightning_modules.logging_callbacks.PDEParamErrorPlottingCallback # stratify error by PDE parameter
+- _target_: lightning.pytorch.callbacks.ModelCheckpoint # save model checkpoints
+  monitor: validation/loss
+  mode: min
+  save_last: True
+  save_top_k: 1
+- _target_: lightning.pytorch.callbacks.LearningRateMonitor # log learning rate
+  logging_interval: epoch
+- _target_: pdeinvbench.lightning_modules.logging_callbacks.InverseErrorByTailoringStepCallback # log error by tailoring step
+- _target_: pdeinvbench.lightning_modules.logging_callbacks.PDEParamErrorTestTimeTailoringCallback

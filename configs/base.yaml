@@ -1,0 +1,25 @@
+name: base
+defaults:
+  - _self_
+  - callbacks: base
+  - model: fno
+  - lightning_module: base
+  - logging: base
+  - loss: relative
+  - optimizer: adam
+  - trainer: trainer
+  - lr_scheduler: cosine 
+  - system_params: Null
+  - data: base
+  - degradation@train_degradation: null
+  - degradation@test_degradation: null
+  - grid_transform: null
+  
+grid_transform: null
+train_degradation: null
+test_degradation: null
+n_past: 2
+n_future: -1 #doesn't matter for inverse problems
+mode: "inverse"
+seed: 0
+high_resolution: false

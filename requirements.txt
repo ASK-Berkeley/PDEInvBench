@@ -1,0 +1,16 @@
+tqdm
+plotly
+pandas
+jaxtyping
+matplotlib
+wandb
+lightning
+h5py
+gitpython
+imageio
+hydra-core
+neuraloperator
+torch_harmonics
+moviepy
+imageio
+learn2learn

@@ -1,0 +1,16 @@
+# ============================================
+# 2DTF SYSTEM PARAMETERS
+# ============================================
+defaults:
+  - base
+
+# ============ Data Parameters ============
+name: "2dtf_inverse"
+data_root: "/data/shared/meta-pde/folded_data/turbulent-flow-2d/fold_2"
+pde_name: "Turbulent Flow 2D"
+num_channels: 1
+cutoff_first_n_frames: 0
+
+# ============ Model Parameters ============
+params_to_predict: ["nu"]
+normalize: True

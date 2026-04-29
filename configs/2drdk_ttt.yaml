@@ -1,0 +1,10 @@
+name: 2drd
+defaults:
+  - _self_
+  - ttt_base
+  - override system_params: 2drdk
+
+
+test_run: true
+inverse_model_wandb_run: ml-pdes/2drdk_compilation/model-30801ssy:v189
+# inverse_model_wandb_run: ml-pdes/time_logging_test/model-o2v1e8oa:best

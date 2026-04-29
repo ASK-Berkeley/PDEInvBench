@@ -1,0 +1,11 @@
+name: 2dtf
+defaults:
+  - _self_
+  - ttt_base
+  - override system_params: 2dtf
+
+
+test_run: true
+# inverse_model_wandb_run: ml-pdes/2dtf_compilation/model-kjskfseu:v172
+inverse_model_wandb_run: ml-pdes/tailoring_redone/model-h6cc91c4:v182
+# inverse_model_wandb_run: ml-pdes/time_logging_test/model-irns4x30:best

@@ -1,0 +1,16 @@
+# ============================================
+# 2DNS SYSTEM PARAMETERS
+# ============================================
+defaults:
+  - base
+
+# ============ Data Parameters ============
+name: "2dns_inverse"
+data_root: "/data/shared/meta-pde/folded_data/navierstokes64_fold2"
+pde_name: "Navier Stokes 2D"
+num_channels: 1
+cutoff_first_n_frames: 0
+
+# ============ Model Parameters ============
+params_to_predict: ["re"]
+normalize: False
