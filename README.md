@@ -1,6 +1,6 @@
-# PDEInvBench
+# PDEInvBench [TMLR 2026]
 
-A one-stop shop repository for the benchmarking Neural Operators on inverse problems in partial differential equations.
+A one-stop shop repository for the benchmarking Neural Operators on inverse problems in partial differential equations. This is the accompanying codebase for the TMLR paper [PDEInvBench: A Comprehensive Dataset and Design Space Exploration of Neural Networks for PDE Inverse Problems](https://arxiv.org/abs/2605.25353).
 
 <img src="images/pde_objectives_main_fig_1.png" alt="" width="400">
 
